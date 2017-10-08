@@ -3,12 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherConfigApp"
              x:Class="WeatherConfigApp.MainPage">
-    <StackLayout Padding="5,5">
-        <Label Text="Welcome to Xamarin Forms!" 
-           YAlign="Center"
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-        <Entry x:Name="EntryField" HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Button x:Name="BluetoothButton"  Clicked="BluetoothButton_Clicked" Text="Bluetooth" Margin="130" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Welcome to Xamarin Forms!"  Priority="0" />
+        <ToolbarItem Text="+"
+                     Activated="ToolbarItem_Activated" Priority="1"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="4,12,5,1">
+  
+        <Entry x:Name="EntryField" Placeholder="Network SSID"  HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Button x:Name="BluetoothButton"  Clicked="BluetoothButton_Clicked" Text="Bluetooth" WidthRequest="200" Margin="120" />
     </StackLayout>
+    
 </ContentPage>

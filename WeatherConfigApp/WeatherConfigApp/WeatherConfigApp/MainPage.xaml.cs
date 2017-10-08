@@ -15,7 +15,7 @@ namespace WeatherConfigApp
         }
         private async void BluetoothButton_Clicked(object sender, EventArgs e)
         {
-            var boo = await DisplayAlert("haha", "Bluetooth it is", "Great!", "shit");
+            var boo = await DisplayAlert("haha", "Bluetooth it is", "Great!", "Cancel");
 
             if (boo)
                 EntryField.Text = "Changed";
@@ -23,6 +23,10 @@ namespace WeatherConfigApp
                 EntryField.Text = "Not Changed";
 
         }
-        
+
+        private void ToolbarItem_Activated(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddWeatherStationPage());
+        }
     }
 }
