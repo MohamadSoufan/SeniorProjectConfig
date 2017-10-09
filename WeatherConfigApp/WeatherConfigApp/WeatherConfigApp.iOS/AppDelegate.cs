@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using System.IO;
 
 namespace WeatherConfigApp.iOS
 {
@@ -23,7 +24,10 @@ namespace WeatherConfigApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            const string fileName = "WeatherStations_db.sqlite";
+            var fileLocation = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "..", "Library");
+            var fullPath = Path.Combine(fileLocation, fileName);
+            LoadApplication(new App(fullPath));
 
             return base.FinishedLaunching(app, options);
         }

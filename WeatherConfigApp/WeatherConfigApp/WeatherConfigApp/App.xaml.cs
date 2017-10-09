@@ -9,11 +9,20 @@ namespace WeatherConfigApp
 {
     public partial class App : Application
     {
+        public static string DB_PATH = string.Empty;
+
         public App()
         {
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
+        }
+
+        public App(string DB_Path):this()
+        {
+            
+            DB_PATH = DB_Path;
+
         }
 
         protected override void OnStart()

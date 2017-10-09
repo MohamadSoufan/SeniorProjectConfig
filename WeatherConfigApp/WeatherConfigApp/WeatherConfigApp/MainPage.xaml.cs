@@ -13,15 +13,24 @@ namespace WeatherConfigApp
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            using (var dbConnection = new SQLite.SQLiteConnection(App.DB_PATH))
+            {
+                
+                dbConnection.CreateTable<WeatherStation>();
+                var stations = dbConnection.Table<WeatherStation>().ToList();
+                StationsListView.ItemsSource = stations;
+            }
+        }
+
         private async void BluetoothButton_Clicked(object sender, EventArgs e)
         {
             var boo = await DisplayAlert("haha", "Bluetooth it is", "Great!", "Cancel");
-
-            if (boo)
-                EntryField.Text = "Changed";
-            else
-                EntryField.Text = "Not Changed";
-
+            
+            //if (NetworkSsidEntry != null) NetworkSsidEntry.Text = boo ? "Changed" : "Not Changed";
         }
 
         private void ToolbarItem_Activated(object sender, EventArgs e)

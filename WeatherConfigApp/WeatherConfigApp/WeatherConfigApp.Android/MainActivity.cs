@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace WeatherConfigApp.Droid
 {
@@ -18,9 +19,11 @@ namespace WeatherConfigApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            const string fileName = "WeatherStations_db.sqlite";
+            var fileLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var fullPath = Path.Combine(fileLocation, fileName);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            LoadApplication(new App(fullPath));
         }
     }
 }

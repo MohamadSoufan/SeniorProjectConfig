@@ -3,16 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherConfigApp"
              x:Class="WeatherConfigApp.MainPage">
+
+
+    <ContentPage.Title>Soufan Weather Station</ContentPage.Title>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Welcome to Xamarin Forms!"  Priority="0" />
         <ToolbarItem Text="+"
-                     Activated="ToolbarItem_Activated" Priority="1"/>
+                     Activated="ToolbarItem_Activated" Priority="0"/>
     </ContentPage.ToolbarItems>
-    
-    <StackLayout Padding="4,12,5,1">
-  
-        <Entry x:Name="EntryField" Placeholder="Network SSID"  HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Button x:Name="BluetoothButton"  Clicked="BluetoothButton_Clicked" Text="Bluetooth" WidthRequest="200" Margin="120" />
+    <StackLayout>
+    <SearchBar></SearchBar>
+    <ListView x:Name="StationsListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Name}"
+                          Detail="{Binding Name}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
     </StackLayout>
-    
+            <!--<StackLayout>
+        <SearchBar></SearchBar>
+        <StackLayout Padding="4,12,4,1" Spacing="50">
+      
+        <Entry x:Name="NetworkSsidEntry" Placeholder="Network SSID"  HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Button x:Name="BluetoothButton"  Clicked="BluetoothButton_Clicked" Text="Bluetooth" WidthRequest="200" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
+    </StackLayout>
+    </StackLayout>-->
 </ContentPage>
