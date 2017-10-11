@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="25" />
+	<uses-sdk android:minSdkVersion="13" android:targetSdkVersion="25" />
+	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<application android:label="WeatherConfigApp.Android" android:icon="@drawable/icon"></application>
 </manifest>

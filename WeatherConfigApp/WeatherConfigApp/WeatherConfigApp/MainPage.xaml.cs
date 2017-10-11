@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.BLE;
+using Plugin.BLE.Abstractions.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +11,12 @@ namespace WeatherConfigApp
 {
     public partial class MainPage : ContentPage
     {
+        IBluetoothLE BluetoothLe;
+        IAdapter Adapter;
         public MainPage()
         {
             InitializeComponent();
+            BluetoothLe = CrossBluetoothLE.Current;
         }
 
         protected override void OnAppearing()
@@ -36,6 +41,11 @@ namespace WeatherConfigApp
         private void ToolbarItem_Activated(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddWeatherStationPage());
+        }
+
+        private void BluetoothChangeStatusButton_Clicked(object sender, EventArgs e)
+        {
+            BluetoothStatusLabel.Text = BluetoothLe.State.ToString();
         }
     }
 }

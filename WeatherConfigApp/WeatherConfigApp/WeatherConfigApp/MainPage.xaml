@@ -21,7 +21,11 @@
         </ListView.ItemTemplate>
     </ListView>
     </StackLayout>
-            <!--<StackLayout>
+    <StackLayout>
+        <Label x:Name="BluetoothStatusLabel" Text="BT Status" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button x:Name="BluetoothChangeStatusButton" Text="Change BL Status" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BluetoothChangeStatusButton_Clicked"/>
+    </StackLayout>
+    <!--<StackLayout>
         <SearchBar></SearchBar>
         <StackLayout Padding="4,12,4,1" Spacing="50">
       
