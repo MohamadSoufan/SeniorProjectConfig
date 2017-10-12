@@ -10,21 +10,39 @@
         <ToolbarItem Text="+"
                      Activated="ToolbarItem_Activated" Priority="0"/>
     </ContentPage.ToolbarItems>
-    <StackLayout>
-    <SearchBar></SearchBar>
-    <ListView x:Name="StationsListView">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Name}"
-                          Detail="{Binding Name}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <StackLayout VerticalOptions="StartAndExpand">
+        <SearchBar Placeholder="Search Station"></SearchBar>
+         <ListView x:Name="StationsListView" VerticalOptions="StartAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"
+                                Detail="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Label x:Name="BluetoothStatusLabel" Text="BT Status" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button x:Name="BluetoothChangeStatusButton" Text="Change BL Status" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BluetoothChangeStatusButton_Clicked"/>-->
+        <TableView Intent="Settings" VerticalOptions="EndAndExpand" HeightRequest="80"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, Property=Height}">
+            <TableRoot>
+                <TableSection >
+                    <SwitchCell x:Name="BluetoothSwitchCell"   
+                                Text="Bluetooth" OnChanged="BluetoothSwitchCell_OnChanged"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property= Y}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+
     </StackLayout>
-    <StackLayout>
-        <Label x:Name="BluetoothStatusLabel" Text="BT Status" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Button x:Name="BluetoothChangeStatusButton" Text="Change BL Status" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BluetoothChangeStatusButton_Clicked"/>
-    </StackLayout>
+    
+    
+    <!--<StackLayout>
+    </StackLayout>-->
+    
+    
+    
     <!--<StackLayout>
         <SearchBar></SearchBar>
         <StackLayout Padding="4,12,4,1" Spacing="50">

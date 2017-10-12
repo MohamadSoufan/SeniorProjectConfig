@@ -17,6 +17,8 @@ namespace WeatherConfigApp
         {
             InitializeComponent();
             BluetoothLe = CrossBluetoothLE.Current;
+            Adapter = CrossBluetoothLE.Current.Adapter;
+
         }
 
         protected override void OnAppearing()
@@ -45,7 +47,13 @@ namespace WeatherConfigApp
 
         private void BluetoothChangeStatusButton_Clicked(object sender, EventArgs e)
         {
-            BluetoothStatusLabel.Text = BluetoothLe.State.ToString();
+          //  BluetoothStatusLabel.Text = BluetoothLe.State.ToString();
+
+        }
+
+        private void BluetoothSwitchCell_OnChanged(object sender, ToggledEventArgs e)
+        {
+            
         }
     }
 }
