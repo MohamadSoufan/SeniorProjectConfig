@@ -1,24 +1,20 @@
-﻿using Plugin.BLE;
-using Plugin.BLE.Abstractions.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace WeatherConfigApp
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        IBluetoothLE BluetoothLe;
-        IAdapter Adapter;
+   
         public MainPage()
         {
             InitializeComponent();
-            BluetoothLe = CrossBluetoothLE.Current;
-            Adapter = CrossBluetoothLE.Current.Adapter;
-
         }
 
         protected override void OnAppearing()

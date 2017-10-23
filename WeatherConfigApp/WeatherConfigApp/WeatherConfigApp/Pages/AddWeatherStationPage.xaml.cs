@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite.Net;
 using SQLite.Net.Interop;
+using WeatherConfigApp.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,17 +16,21 @@ namespace WeatherConfigApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddWeatherStationPage : ContentPage
 	{
-		public AddWeatherStationPage ()
+     
+
+        public AddWeatherStationPage ()
 		{
 			InitializeComponent ();
-		}
-
-        private void BtPairButton_Clicked(object sender, EventArgs e)
-        {
-
         }
 
-        private void AddButton_Clicked(object sender, EventArgs e)
+	    private void BtPairButton_Clicked(object sender, EventArgs e)
+	    {
+	        Navigation.PushAsync(new PairDevice());
+	    }
+
+
+
+	    private void AddButton_Clicked(object sender, EventArgs e)
         {
             var station = new WeatherStation
             {

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace WeatherConfigApp
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         public static string DB_PATH = string.Empty;

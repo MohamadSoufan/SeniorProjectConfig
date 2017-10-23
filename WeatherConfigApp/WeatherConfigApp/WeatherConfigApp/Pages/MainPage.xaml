@@ -6,6 +6,7 @@
 
 
     <ContentPage.Title>Soufan Weather Station</ContentPage.Title>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
                      Activated="ToolbarItem_Activated" Priority="0"/>
@@ -22,17 +23,14 @@
         </ListView>
         <!--<Label x:Name="BluetoothStatusLabel" Text="BT Status" VerticalOptions="Center" HorizontalOptions="Center"/>
         <Button x:Name="BluetoothChangeStatusButton" Text="Change BL Status" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BluetoothChangeStatusButton_Clicked"/>-->
-        <TableView Intent="Settings" VerticalOptions="EndAndExpand" HeightRequest="80"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, Property=Height}">
+        <!--<TableView Intent="Settings" VerticalOptions="EndAndExpand" HeightRequest="80">
             <TableRoot>
                 <TableSection >
                     <SwitchCell x:Name="BluetoothSwitchCell"   
-                                Text="Bluetooth" OnChanged="BluetoothSwitchCell_OnChanged"
-                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property= Y}" />
+                                Text="Bluetooth" OnChanged="BluetoothSwitchCell_OnChanged"/>
                 </TableSection>
             </TableRoot>
-        </TableView>
+        </TableView>-->
 
 
     </StackLayout>

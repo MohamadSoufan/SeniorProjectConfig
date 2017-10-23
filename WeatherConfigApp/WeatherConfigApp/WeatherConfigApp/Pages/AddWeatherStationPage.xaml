@@ -6,12 +6,7 @@
     <ContentPage.Title>Add Station</ContentPage.Title>
 
     <StackLayout Padding="4,12,4,1" Spacing="30">
-        <Entry x:Name="StationNameEntry" Placeholder="Station Name"  HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center" />
-        <StackLayout Padding="8,0,4,1" Orientation="Horizontal">
-            <Label Text="Connection Status:" VerticalOptions="Center" />
-            <Entry x:Name="ConnectionStatusEntry" WidthRequest="200" VerticalOptions="CenterAndExpand" HeightRequest="38" Placeholder="Status"/>
-        </StackLayout>
-        
+        <Entry x:Name="StationNameEntry" Placeholder="Station Name"  HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center"/>
         <Button x:Name="BtPairButton" Text="Pair to device" HorizontalOptions="CenterAndExpand" Clicked="BtPairButton_Clicked"/>
         <Button x:Name="AddButton" Text="Add" HorizontalOptions="Center" Clicked="AddButton_Clicked" IsEnabled="True"/>
 
