@@ -20,7 +20,7 @@ namespace WeatherConfigApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            using (var dbConnection = new SQLite.SQLiteConnection(App.DB_PATH))
+            using (var dbConnection = new SQLite.SQLiteConnection(App.DbPath))
             {
                 
                 dbConnection.CreateTable<WeatherStation>();
@@ -50,6 +50,11 @@ namespace WeatherConfigApp
         private void BluetoothSwitchCell_OnChanged(object sender, ToggledEventArgs e)
         {
             
+        }
+
+        private void StationsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
         }
     }
 }

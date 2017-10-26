@@ -11,7 +11,7 @@ namespace WeatherConfigApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
-        public static string DB_PATH = string.Empty;
+        public static string DbPath = string.Empty;
 
         public App()
         {
@@ -20,10 +20,10 @@ namespace WeatherConfigApp
             MainPage = new NavigationPage(new MainPage());
         }
 
-        public App(string DB_Path):this()
+        public App(string dbPath):this()
         {
             
-            DB_PATH = DB_Path;
+            DbPath = dbPath;
 
         }
 

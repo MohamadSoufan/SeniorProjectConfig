@@ -13,7 +13,8 @@ namespace WeatherConfigApp
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int PairedDeviceId { get; set; }
+        public int ConnectedDeviceId { get; set; }
+        public string ConnectionStatus { get; set; }
     }
 }
 

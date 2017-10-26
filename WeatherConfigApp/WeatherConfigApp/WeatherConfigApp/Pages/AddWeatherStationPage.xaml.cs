@@ -16,34 +16,52 @@ namespace WeatherConfigApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddWeatherStationPage : ContentPage
 	{
-     
 
+        protected WeatherStation Station;
         public AddWeatherStationPage ()
 		{
 			InitializeComponent ();
+            AddButton.IsEnabled = false;
+            
         }
-
-	    private void BtPairButton_Clicked(object sender, EventArgs e)
+     
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Station == null) return;
+            if (Station.ConnectionStatus.Equals("Connected"))
+                AddButton.IsEnabled = true;
+        }
+        private async void BtPairButton_Clicked(object sender, EventArgs e)
 	    {
-	        Navigation.PushAsync(new PairDevice());
+	        if (string.IsNullOrEmpty(StationNameEntry.Text))
+	        {
+	            await DisplayAlert("Alert", "Station name can't be empty", "Cancel");
+	            return;
+	        }
+            Station = new WeatherStation
+	        {
+	            Name = StationNameEntry.Text,
+	            ConnectionStatus = "Disconnected"
+	        };
+            await Navigation.PushAsync(new ConnectDevice(Station));
 	    }
 
+        
 
-
-	    private void AddButton_Clicked(object sender, EventArgs e)
+	    private async void AddButton_Clicked(object sender, EventArgs e)
         {
-            var station = new WeatherStation
-            {
-                Name = StationNameEntry.Text ?? "Empty Station"
-            };
-            using (var dbConnection = new SQLite.SQLiteConnection( App.DB_PATH))
+       
+                    
+            using (var dbConnection = new SQLite.SQLiteConnection( App.DbPath))
             {
                 dbConnection.CreateTable<WeatherStation>();
-                var numOfRows = dbConnection.Insert(station);
+                
+                var numOfRows = dbConnection.Insert(Station);
                 if (numOfRows > 0)
-                    DisplayAlert("Success", "Weather Station (" + station.Name + ") was created!", "Great!");
+                    await DisplayAlert("Success", "Weather Station (" + Station.Name + ") was created!", "Great!");
                 else
-                    DisplayAlert("Failure", "Weather Station (" + station.Name + ") failed to insert", "Terminate");
+                    await DisplayAlert("Failure", "Weather Station (" + Station.Name + ") failed to insert", "Terminate");
             }
         }
     }

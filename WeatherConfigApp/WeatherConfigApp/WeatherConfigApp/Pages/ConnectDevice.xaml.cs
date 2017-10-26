@@ -13,13 +13,14 @@ using Xamarin.Forms.Xaml;
 namespace WeatherConfigApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PairDevice : ContentPage
+    public partial class ConnectDevice : ContentPage
     {
         public IBluetoothLE BluetoothLe { get; set; }
         public IAdapter Adapter { get; set; }
         public IDevice BtDevice { get; set; }
         public ObservableCollection<IDevice> DeviceList { get; set; }
-        public PairDevice()
+        public WeatherStation FatherStation { get; set; }
+        public ConnectDevice()
         {
             InitializeComponent();
             BluetoothLe = CrossBluetoothLE.Current;
@@ -28,7 +29,12 @@ namespace WeatherConfigApp.Pages
             Adapter.DeviceDiscovered += Adapter_DeviceDiscovered;
             DevicesListView.ItemsSource = DeviceList;
             DevicesListView.ItemTapped += DevicesListView_ItemTapped;
+
            
+        }
+        public ConnectDevice(WeatherStation weatherstation):this()
+        {
+            FatherStation = weatherstation;
         }
 
         private async void DevicesListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -37,10 +43,11 @@ namespace WeatherConfigApp.Pages
             try
             {
                 await Adapter.ConnectToDeviceAsync(BtDevice);
+                FatherStation.ConnectionStatus = "Connected";
             }
             catch (DeviceConnectionException exception)
             {
-
+                return;
             }
         }
 

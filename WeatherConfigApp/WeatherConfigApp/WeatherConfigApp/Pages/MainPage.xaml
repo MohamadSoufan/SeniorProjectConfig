@@ -13,11 +13,11 @@
     </ContentPage.ToolbarItems>
     <StackLayout VerticalOptions="StartAndExpand">
         <SearchBar Placeholder="Search Station"></SearchBar>
-         <ListView x:Name="StationsListView" VerticalOptions="StartAndExpand">
+         <ListView x:Name="StationsListView" VerticalOptions="StartAndExpand" ItemTapped="StationsListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}"
-                                Detail="{Binding Name}"/>
+                                Detail="{Binding ConnectionStatus}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
