@@ -17,36 +17,14 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}"
-                                Detail="{Binding ConnectionStatus}"/>
+                              Detail="{Binding ConnectionStatus}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--<Label x:Name="BluetoothStatusLabel" Text="BT Status" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Button x:Name="BluetoothChangeStatusButton" Text="Change BL Status" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BluetoothChangeStatusButton_Clicked"/>-->
-        <!--<TableView Intent="Settings" VerticalOptions="EndAndExpand" HeightRequest="80">
-            <TableRoot>
-                <TableSection >
-                    <SwitchCell x:Name="BluetoothSwitchCell"   
-                                Text="Bluetooth" OnChanged="BluetoothSwitchCell_OnChanged"/>
-                </TableSection>
-            </TableRoot>
-        </TableView>-->
+     
 
 
     </StackLayout>
     
-    
-    <!--<StackLayout>
-    </StackLayout>-->
-    
-    
-    
-    <!--<StackLayout>
-        <SearchBar></SearchBar>
-        <StackLayout Padding="4,12,4,1" Spacing="50">
-      
-        <Entry x:Name="NetworkSsidEntry" Placeholder="Network SSID"  HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Button x:Name="BluetoothButton"  Clicked="BluetoothButton_Clicked" Text="Bluetooth" WidthRequest="200" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
-    </StackLayout>
-    </StackLayout>-->
+   
 </ContentPage>

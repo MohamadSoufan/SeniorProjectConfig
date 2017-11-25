@@ -48,6 +48,9 @@
     <Compile Include="Pages\ConnectDevice.xaml.cs">
       <DependentUpon>ConnectDevice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WeatherStationPage.xaml.cs">
+      <DependentUpon>WeatherStationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeatherStation.cs" />
   </ItemGroup>
@@ -131,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ConnectDevice.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\WeatherStationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

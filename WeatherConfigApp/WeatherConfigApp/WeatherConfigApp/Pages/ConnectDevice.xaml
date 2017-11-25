@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherConfigApp.Pages.ConnectDevice">
-    <ContentPage.Title>Pair Device</ContentPage.Title>
-    <StackLayout>
+    <ContentPage.Title>Connect Device</ContentPage.Title>
+
+    <StackLayout Padding="50">
+        <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"  VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
         <Button x:Name="ScanBtn" Text="Scan Devices" HorizontalOptions="Center" Margin="20, 20" Clicked="ScanBtn_Clicked"></Button>
         <ListView x:Name="DevicesListView" VerticalOptions="StartAndExpand">
             <ListView.ItemTemplate>

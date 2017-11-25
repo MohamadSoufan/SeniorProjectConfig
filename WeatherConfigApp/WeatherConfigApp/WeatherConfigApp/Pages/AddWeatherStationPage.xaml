@@ -7,7 +7,7 @@
 
     <StackLayout Padding="4,12,4,1" Spacing="30">
         <Entry x:Name="StationNameEntry" Placeholder="Station Name"  HeightRequest="40" WidthRequest="356" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Button x:Name="BtPairButton" Text="Pair to device" HorizontalOptions="CenterAndExpand" Clicked="BtPairButton_Clicked"/>
+        <Button x:Name="BtConnectButton" Text="Connect to Device" HorizontalOptions="CenterAndExpand" Clicked="BtConnectButton_Clicked"/>
         <Button x:Name="AddButton" Text="Add" HorizontalOptions="Center" Clicked="AddButton_Clicked" IsEnabled="True"/>
 
     </StackLayout>

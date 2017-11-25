@@ -32,7 +32,7 @@ namespace WeatherConfigApp
             if (Station.ConnectionStatus.Equals("Connected"))
                 AddButton.IsEnabled = true;
         }
-        private async void BtPairButton_Clicked(object sender, EventArgs e)
+        private async void BtConnectButton_Clicked(object sender, EventArgs e)
 	    {
 	        if (string.IsNullOrEmpty(StationNameEntry.Text))
 	        {
