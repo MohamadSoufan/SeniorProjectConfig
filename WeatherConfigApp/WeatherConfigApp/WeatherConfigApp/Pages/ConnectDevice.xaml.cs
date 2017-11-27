@@ -41,6 +41,7 @@ namespace WeatherConfigApp.Pages
         {
             
             BtDevice = e.Item as IDevice;
+            
             try
             {
                 if(Adapter.IsScanning)
@@ -60,7 +61,7 @@ namespace WeatherConfigApp.Pages
 
         private void Adapter_DeviceDiscovered(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
         {
-            DeviceList.Add(e.Device);
+            DeviceList.Add(e.Device);   
         }
 
         private async void ScanBtn_Clicked(object sender, EventArgs e)

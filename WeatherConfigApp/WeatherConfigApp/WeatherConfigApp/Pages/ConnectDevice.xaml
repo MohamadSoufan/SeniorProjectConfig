@@ -12,8 +12,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding NativeDevice.Id}"/>
-                            <Label Text="{Binding NativeDevice.Name}"/>
+                            <Label Text="{Binding NativeDevice.Address}"/>
+                            <Label Text="{Binding NativeDevice.Rssi}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
