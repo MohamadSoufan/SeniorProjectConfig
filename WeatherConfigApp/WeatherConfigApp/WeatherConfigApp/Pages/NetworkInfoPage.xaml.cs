@@ -41,6 +41,15 @@ namespace WeatherConfigApp.Pages
             try
             {
                 var services = await BtDevice.GetServicesAsync();
+                var service = await BtDevice.GetServiceAsync(Guid.Parse("12345678-1234-5678-1234-B827EB7693D6"));
+                var chrs = await service.GetCharacteristicAsync(Guid.Parse("12345678-1234-5678-0000-B827EB7693D6"));
+
+                if (chrs.CanWrite)
+                {
+                    chrs.WriteType = CharacteristicWriteType.Default;
+                    var bytes = chrs.Value;
+                    await chrs.WriteAsync(bytes);
+                }
             }
             catch (Exception exception)
             {

@@ -31,7 +31,15 @@ namespace WeatherConfigApp.Pages
   //          Adapter.DeviceAdvertised += Adapter_DeviceAdvertised;
             DevicesListView.ItemsSource = DeviceList;
             DevicesListView.ItemTapped += DevicesListView_ItemTapped;
+            Adapter.DeviceConnected += Adapter_DeviceConnected;
+            
 
+           
+        }
+
+        private async void Adapter_DeviceConnected(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
+        {
+            await DisplayAlert("Connected", "yes " + UuidString, "ok");
            
         }
 
@@ -57,17 +65,26 @@ namespace WeatherConfigApp.Pages
         private async void DevicesListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
 
-            BtDevice = DevicesListView.SelectedItem as IDevice;
-           
+            
             try
             {
                 if(Adapter.IsScanning)
                     await Adapter.StopScanningForDevicesAsync();
-                
-           //     await Adapter.ConnectToDeviceAsync(BtDevice);
+                BtDevice = DevicesListView.SelectedItem as IDevice;
+                //await DisplayAlert("K",
+                //    "typ: " + BtDevice.AdvertisementRecords[3].Type + "|msg: " + Encoding.UTF8.GetString(BtDevice.AdvertisementRecords[0].Data,0,1),
+                //    "ok");
+               
 
-                await Navigation.PushAsync(new NetworkInfoPage(BluetoothLe,Adapter,BtDevice));
+               // await Adapter.ConnectToDeviceAsync(BtDevice);
+                var task = await Adapter.ConnectToKnownDeviceAsync(BtDevice.Id);
+    
+                //BtDevice = await Adapter.ConnectToKnownDeviceAsync(Guid.Parse("00000000-0000-0000-0000-B827EB7693D6"));
+             
 
+               // await Adapter.ConnectToDeviceAsync(BtDevice);
+
+                //     await Navigation.PushAsync(new NetworkInfoPage(BluetoothLe,Adapter,BtDevice));
             }
             catch (DeviceConnectionException exception)
             {
@@ -113,6 +130,21 @@ namespace WeatherConfigApp.Pages
             SpinningWheel.IsVisible = wheel;
             ScanBtn.IsVisible = btn;
             ScanBtn.IsEnabled = btn;
+        }
+
+        private async void SendBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var services = await BtDevice.GetServicesAsync();
+
+                var service =
+                    await BtDevice.GetServiceAsync(new Guid());
+            }
+            catch (DeviceConnectionException exception)
+            {
+                await DisplayAlert("Exception", exception.Message, "Exit");
+            }
         }
     }
 }
