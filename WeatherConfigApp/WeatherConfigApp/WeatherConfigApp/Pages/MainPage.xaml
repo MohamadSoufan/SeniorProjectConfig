@@ -7,6 +7,12 @@
 
     <ContentPage.Title>Soufan Weather Station</ContentPage.Title>
     
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <local:GuidToStringConverter x:Key="GuidConverter" />
+    </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
                      Activated="ToolbarItem_Activated" Priority="0"/>
@@ -21,10 +27,26 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-     
 
+
+        <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"  VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
+        <Button x:Name="ScanBtn" Text="Scan Devices" HorizontalOptions="Center" Margin="20, 20" Clicked="ScanBtn_Clicked"></Button>
+        <Button x:Name="SendBtn" Text="Send" HorizontalOptions="Center" Margin="20, 20" Clicked="SendBtn_Clicked" />
+
+        <ListView x:Name="DevicesListView" VerticalOptions="StartAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Id, Converter={StaticResource GuidConverter}}"/>
+                            <Label Text="{Binding Name}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </StackLayout>
-    
    
+
 </ContentPage>

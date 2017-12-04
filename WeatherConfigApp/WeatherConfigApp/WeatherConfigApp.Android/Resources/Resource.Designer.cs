@@ -26,6 +26,10 @@ namespace WeatherConfigApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Bluetooth.Plugin.Android.Resource.String.ApplicationName = global::WeatherConfigApp.Droid.Resource.String.ApplicationName;
+			global::Bluetooth.Plugin.Android.Resource.String.Hello = global::WeatherConfigApp.Droid.Resource.String.Hello;
+			global::Plugin.Comgo.Ble.Resource.String.ApplicationName = global::WeatherConfigApp.Droid.Resource.String.ApplicationName;
+			global::Plugin.Comgo.Ble.Resource.String.Hello = global::WeatherConfigApp.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::WeatherConfigApp.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::WeatherConfigApp.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::WeatherConfigApp.Droid.Resource.Attribute.actionBarSize;

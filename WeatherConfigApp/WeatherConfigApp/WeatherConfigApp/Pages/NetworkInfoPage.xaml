@@ -7,7 +7,7 @@
             <StackLayout Padding="4,12,4,1" Spacing="50">
 
                 <Entry x:Name="NetworkSsidEntry" Placeholder="Network SSID" TextChanged="NetworkSsidEntry_TextChanged" HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Entry x:Name="NetworkPwdEntry" Placeholder="Network Password" TextChanged="NetworkPwdEntry_TextChanged" HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Entry x:Name="NetworkPwdEntry" Placeholder="Network Password" IsPassword="True" TextChanged="NetworkPwdEntry_TextChanged" HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
 
                 <Button x:Name="SendBtn" Clicked="SendBtn_Clicked" IsEnabled="False" Text="Send" WidthRequest="200" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
             </StackLayout>

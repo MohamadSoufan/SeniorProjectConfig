@@ -39,8 +39,11 @@ namespace WeatherConfigApp.Pages
 
         private async void Adapter_DeviceConnected(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
         {
+            FatherStation.ConnectionStatus = "Connected";
+
             await DisplayAlert("Connected", "yes " + UuidString, "ok");
-           
+            await Navigation.PushAsync(new NetworkInfoPage(BluetoothLe,Adapter,BtDevice));
+
         }
 
         private async void Adapter_DeviceAdvertised(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
@@ -77,8 +80,11 @@ namespace WeatherConfigApp.Pages
                
 
                // await Adapter.ConnectToDeviceAsync(BtDevice);
-                var task = await Adapter.ConnectToKnownDeviceAsync(BtDevice.Id);
-    
+                if (BtDevice != null)
+                {
+                    var task = await Adapter.ConnectToKnownDeviceAsync(BtDevice.Id);
+                }
+
                 //BtDevice = await Adapter.ConnectToKnownDeviceAsync(Guid.Parse("00000000-0000-0000-0000-B827EB7693D6"));
              
 
@@ -91,7 +97,6 @@ namespace WeatherConfigApp.Pages
                 await DisplayAlert("Exception", exception.Message, "Exit");
             }
            
-           // FatherStation.ConnectionStatus = "Connected";
         }
 
         private void Adapter_DeviceDiscovered(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)

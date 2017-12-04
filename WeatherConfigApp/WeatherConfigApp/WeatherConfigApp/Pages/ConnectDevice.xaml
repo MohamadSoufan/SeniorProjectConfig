@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:weatherConfigApp="clr-namespace:WeatherConfigApp;assembly=WeatherConfigApp"
              x:Class="WeatherConfigApp.Pages.ConnectDevice">
     <ContentPage.Title>Connect Device</ContentPage.Title>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <weatherConfigApp:GuidToStringConverter x:Key="GuidConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout Padding="50">
         <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"  VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
         <Button x:Name="ScanBtn" Text="Scan Devices" HorizontalOptions="Center" Margin="20, 20" Clicked="ScanBtn_Clicked"></Button>
@@ -13,10 +19,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding NativeDevice.Address}"/>
+                        <!--<StackLayout>-->
+                            <!--<Label Text="{Binding Id, Converter={StaticResource GuidConverter}}"/>-->
                             <Label Text="{Binding Name}"/>
-                        </StackLayout>
+                        <!--</StackLayout>-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
