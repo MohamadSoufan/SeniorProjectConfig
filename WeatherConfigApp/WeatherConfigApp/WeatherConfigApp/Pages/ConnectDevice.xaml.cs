@@ -39,26 +39,15 @@ namespace WeatherConfigApp.Pages
 
         private async void Adapter_DeviceConnected(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
         {
+            UpdateUi(false, true);
             FatherStation.ConnectionStatus = "Connected";
-
-            await DisplayAlert("Connected", "yes " + UuidString, "ok");
+            SendBtn.IsVisible = true;
+            SendBtn.IsEnabled = false;
+            await DisplayAlert("Connected", "You are connected to " + UuidString, "ok");
             await Navigation.PushAsync(new NetworkInfoPage(BluetoothLe,Adapter,BtDevice));
 
         }
 
-        private async void Adapter_DeviceAdvertised(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
-        {
-            try
-            {
-                await DisplayAlert("Alert",
-                    "id= " + e.Device.Id+ " ARtype: " +
-                    e.Device.AdvertisementRecords[0].Type, "ok");
-            }
-            catch (Exception exe)
-            {
-                await DisplayAlert("Exception",exe.Message,"cancel");
-            }
-        }
 
         public ConnectDevice(WeatherStation weatherstation):this()
         {
@@ -67,13 +56,18 @@ namespace WeatherConfigApp.Pages
 
         private async void DevicesListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            UpdateUi(true, false);
+            SendBtn.IsVisible = false;
+            SendBtn.IsEnabled = false;
 
-            
             try
             {
                 if(Adapter.IsScanning)
                     await Adapter.StopScanningForDevicesAsync();
+
                 BtDevice = DevicesListView.SelectedItem as IDevice;
+                if (DevicesListView.SelectedItem != null)
+                    DevicesListView.SelectedItem = null;
                 //await DisplayAlert("K",
                 //    "typ: " + BtDevice.AdvertisementRecords[3].Type + "|msg: " + Encoding.UTF8.GetString(BtDevice.AdvertisementRecords[0].Data,0,1),
                 //    "ok");
@@ -82,6 +76,7 @@ namespace WeatherConfigApp.Pages
                // await Adapter.ConnectToDeviceAsync(BtDevice);
                 if (BtDevice != null)
                 {
+                    
                     var task = await Adapter.ConnectToKnownDeviceAsync(BtDevice.Id);
                 }
 
@@ -94,9 +89,17 @@ namespace WeatherConfigApp.Pages
             }
             catch (DeviceConnectionException exception)
             {
+                UpdateUi(false, true);
+                SendBtn.IsVisible = true;
+                SendBtn.IsEnabled = false;
                 await DisplayAlert("Exception", exception.Message, "Exit");
             }
-           
+            if (!FatherStation.ConnectionStatus.Equals("Connected"))
+            {
+                UpdateUi(false, true);
+                SendBtn.IsVisible = true;
+                SendBtn.IsEnabled = false;
+            }  
         }
 
         private void Adapter_DeviceDiscovered(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs e)
@@ -108,7 +111,16 @@ namespace WeatherConfigApp.Pages
 
         private async void ScanBtn_Clicked(object sender, EventArgs e)
         {
+            if (!BluetoothLe.IsOn)
+            {
+                await DisplayAlert("Attention", "Please turn Bluetooth On to continue", "Ok");
+                return;
+            }
+
+
             UpdateUi(true,false);
+            SendBtn.IsVisible = true;
+            SendBtn.IsEnabled = true;
 
             DeviceList.Clear();
             try
@@ -122,10 +134,14 @@ namespace WeatherConfigApp.Pages
             catch (DeviceConnectionException exception)
             {
                 UpdateUi(false, true);
+                SendBtn.IsVisible = true;
+                SendBtn.IsEnabled = false;
                 await DisplayAlert("Exception", exception.Message, "Exit");
             }
             // DevicesListView.ItemsSource = DeviceList.ToList();
             UpdateUi(false, true);
+            SendBtn.IsVisible = true;
+            SendBtn.IsEnabled = false;
 
         }
 
@@ -135,20 +151,42 @@ namespace WeatherConfigApp.Pages
             SpinningWheel.IsVisible = wheel;
             ScanBtn.IsVisible = btn;
             ScanBtn.IsEnabled = btn;
+           
         }
 
         private async void SendBtn_Clicked(object sender, EventArgs e)
         {
             try
             {
-                var services = await BtDevice.GetServicesAsync();
-
-                var service =
-                    await BtDevice.GetServiceAsync(new Guid());
+                if(Adapter.IsScanning)
+                    await Adapter.StopScanningForDevicesAsync();
             }
             catch (DeviceConnectionException exception)
             {
                 await DisplayAlert("Exception", exception.Message, "Exit");
+            }
+        }
+
+        private async void ToolbarItem_Activated(object sender, EventArgs e)
+        {
+            if (BtDevice == null) return;
+            try
+            {
+                UpdateUi(true, false);
+                SendBtn.IsVisible = false;
+                SendBtn.IsEnabled = false;
+                await this.Adapter.DisconnectDeviceAsync(BtDevice);
+                UpdateUi(false, true);
+                SendBtn.IsVisible = true;
+                SendBtn.IsEnabled = false;
+            }
+            catch (DeviceConnectionException ex)
+            {
+                UpdateUi(false, true);
+                SendBtn.IsVisible = true;
+                SendBtn.IsEnabled = false;
+                await DisplayAlert("Exception", ex.Message, "Exit");
+
             }
         }
     }

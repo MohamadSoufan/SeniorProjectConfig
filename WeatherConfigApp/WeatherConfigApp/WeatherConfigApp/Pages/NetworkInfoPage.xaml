@@ -2,14 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherConfigApp.Pages.NetworkInfoPage">
+    <ContentPage.Title>Network Info</ContentPage.Title>
+
     <ContentPage.Content>
+        
         <StackLayout>
             <StackLayout Padding="4,12,4,1" Spacing="50">
+                <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"   VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
 
                 <Entry x:Name="NetworkSsidEntry" Placeholder="Network SSID" TextChanged="NetworkSsidEntry_TextChanged" HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
                 <Entry x:Name="NetworkPwdEntry" Placeholder="Network Password" IsPassword="True" TextChanged="NetworkPwdEntry_TextChanged" HeightRequest="40" WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                <Button x:Name="SendBtn" Clicked="SendBtn_Clicked" IsEnabled="False" Text="Send" WidthRequest="200" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal" >
+                    <Button x:Name="SendBtn" Margin="30" Clicked="SendBtn_Clicked" IsEnabled="False" Text="Send" WidthRequest="100" HeightRequest="40" VerticalOptions="Center"/>
+                    <Button x:Name="RebootBtn" Margin="20" Clicked="RebootBtn_Clicked" IsEnabled="False" Text="Reboot" WidthRequest="100" HeightRequest="40" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

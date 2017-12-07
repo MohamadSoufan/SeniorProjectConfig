@@ -10,23 +10,28 @@
             <weatherConfigApp:GuidToStringConverter x:Key="GuidConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Padding="50">
-        <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"  VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
-        <Button x:Name="ScanBtn" Text="Scan Devices" HorizontalOptions="Center" Margin="20, 20" Clicked="ScanBtn_Clicked"></Button>
-        <Button x:Name="SendBtn" Text="Send" HorizontalOptions="Center" Margin="20, 20" Clicked="SendBtn_Clicked" />
-
-        <ListView x:Name="DevicesListView" VerticalOptions="StartAndExpand">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear"
+                     Activated="ToolbarItem_Activated" Priority="0" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <StackLayout>
+            <ActivityIndicator x:Name="SpinningWheel" HeightRequest="100" WidthRequest="100" Color="Blue"  VerticalOptions="CenterAndExpand" IsEnabled="True" IsRunning="True" IsVisible="False"/>
+            <StackLayout>
+                <Button x:Name="ScanBtn" Text="Scan Devices" HorizontalOptions="Center" Margin="20, 5" Clicked="ScanBtn_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    <StackLayout>
+         <ListView x:Name="DevicesListView" VerticalOptions="StartAndExpand" WidthRequest="200">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <!--<StackLayout>-->
-                            <!--<Label Text="{Binding Id, Converter={StaticResource GuidConverter}}"/>-->
-                            <Label Text="{Binding Name}"/>
-                        <!--</StackLayout>-->
-                    </ViewCell>
+                        <TextCell Height="25"
+                                  Text="{Binding Id, Converter={StaticResource GuidConverter}}"
+                                  Detail="{Binding Name}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+    </StackLayout>
+        <Button x:Name="SendBtn" Text="Stop" HorizontalOptions="Center" Margin="20, 5" Clicked="SendBtn_Clicked" IsEnabled="False"/>
     </StackLayout>
 </ContentPage>

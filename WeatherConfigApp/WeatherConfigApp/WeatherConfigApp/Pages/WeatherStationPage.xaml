@@ -2,15 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherConfigApp.Pages.WeatherStationPage">
-    <StackLayout Padding="50,20">
+    <StackLayout Padding="20,15">
         <StackLayout Padding="5,5" Orientation="Horizontal">
             <Label Text="Station Name:"/>
             <Label x:Name="NameLabel" Text="{Binding Station.Name}"/>
         </StackLayout>
         <StackLayout Padding="5,5" Orientation="Horizontal">
-            <Label Text="Decvice Connected to:"/>
-            <Label x:Name="DeviceLabel" Text="{Binding Station.ConnectedDeviceId}"/>
+            <Label Text="Station Status:"/>
+            <Label x:Name="StatusLabel" Text="{Binding Station.ConnectionStatus}"/>
         </StackLayout>
-        <Button x:Name="ConnectBtn" IsEnabled="False" IsVisible="False" Text="Connect to Device" HorizontalOptions="CenterAndExpand" Clicked="ConnectBtn_Clicked"/>
+        <StackLayout Padding="0,50">
+            <Button x:Name="ConnectBtn" IsEnabled="True" IsVisible="True" Text="Connect to Device" HorizontalOptions="CenterAndExpand" Clicked="ConnectBtn_Clicked"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

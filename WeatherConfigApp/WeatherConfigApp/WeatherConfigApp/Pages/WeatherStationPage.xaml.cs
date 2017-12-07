@@ -21,18 +21,13 @@ namespace WeatherConfigApp.Pages
 
         public WeatherStationPage(WeatherStation station):this()
         {
+            
             Station = station;
             Title = station.Name;
+            NameLabel.Text = station.Name;
+            StatusLabel.Text = station.ConnectionStatus;
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            if (Station.ConnectionStatus==null || Station.ConnectionStatus.Equals("Disconnected"))
-            {
-                ConnectBtn.IsEnabled = true;
-                ConnectBtn.IsVisible = true;
-            }
-        }
+    
 
         private void ConnectBtn_Clicked(object sender, EventArgs e)
         {
